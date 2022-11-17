@@ -179,7 +179,7 @@ def add_donor():
                                                 "Your Details are send to the Nearest plasma Donor centre From Your Location.<br><br>The Nearest Locations Showed in the Website<br><br>"\
                                                 " Thanks!<br>"\
                                                 "Plasma Donor Service")
-                        sg = SendGridAPIClient("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")
+                        sg = SendGridAPIClient("API")
                         response = sg.send(message)
                         print(response.status_code, response.body)
                   sendgrid_email()
@@ -242,7 +242,7 @@ def create_request():
                                     "Your Details are send to the Nearest plasma Donor centre From Your Location. For Furthur deatails You may contact the Plasma Donation Centre.<br>and the details provided in the website.<br><br><br><br>"\
                                     " Thanks!<br>"\
                                     "Plasma Donor Service")
-                  sg = SendGridAPIClient("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")
+                  sg = SendGridAPIClient("API")
                   response = sg.send(message)
                   print(response.status_code, response.body)
 
