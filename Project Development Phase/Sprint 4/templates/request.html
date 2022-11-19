@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Favicons -->
+  <link href="../static/img/plasma.png" rel="icon">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700,900&display=swap" rel="stylesheet">
+<!-- Vendor CSS Files -->
+<link href="../static/vendor/aos/aos.css" rel="stylesheet">
+
+<link href="../static/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+<link href="../static/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+<link href="../static/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+<link href="../static/css/style.css" rel="stylesheet">
+     <!-- Bootstrap CSS -->
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    
+    <!-- Style -->
+    <link rel="stylesheet" href="../static/css/request.css">
+    <title>Plasma Donor</title>
+  </head>
+  <body>
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-center shadow">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <div class="logo">
+        <h1 class="text-light"><a href="/"><span>Plasma Donor</span></a></h1>
+      </div>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto" href="/">HOME</a></li>
+          <!-- <li><a class="nav-link scrollto" href="#services">ABOUT</a></li> -->
+          <li><a class="nav-link scrollto" href="/request">REQUEST</a></li>
+          <li><a class="nav-link scrollto" href="/donor_registration">DONATE</a></li>
+          <li><a class="nav-link scrollto" href="/sign_in">SIGN IN</a></li>
+          <li><a class="nav-link scrollto" href="/sign_up">SIGN UP</a></li>
+          <li><a class="nav-link scrollto" href="/profile">MY PROFILE</a></li>
+          <li><a class="nav-link scrollto" href="/logout">LOGOUT</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+    {% if logged_in == True %}
+  <div class="content">
+    
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-10">
+          
+
+          <div class="row justify-content-center">
+            <div class="col-md-6">
+              
+              <h3 class="heading mb-4">Let's make a request!</h3>
+              
+
+              <p><img src="../static/img/request.jpeg" alt="Image" class="img-fluid"></p>
+
+
+            </div>
+            <div class="col-md-6">
+              
+                  
+              <form action="{{ url_for('create_request') }}" onsubmit="return validateForm()" method="post" id="contactForm" name="form">
+                <div class="row">
+                  <div class="col-md-12 form-group ">
+                    <input onkeyup="validname(this.value)" type="text" class="form-control mb-3" name="name" id="name" placeholder="Your name" value={{name}}>
+                  </div>
+                  <div style="margin-top: -15px;">
+                    <label style="position: static; color:red" id="name_err" class="text-danger" ></label>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12 form-group">
+                    <input onkeyup="validemail(this.value)" type="text" class="form-control mb-3" name="email" id="email" placeholder="Email" value={{email}}>
+                  </div>
+                  <div style="margin-top: -15px;">
+                    <label style="position: static; color:red" id="email_err" class="text-danger" ></label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12 form-group">
+                    <input type="text" class="form-control mb-3" name="phone" id="subject" placeholder="phone">
+                  </div>
+                  <div style="margin-top: -15px;">
+                    <label style="position: static; color:red" id="contact_err" class="text-danger" ></label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12 form-group">
+                    <input type="text" class="form-control mb-3" name="bloodgroup" id="subject" placeholder="Blood group">
+                  </div>
+                  <div style="margin-top: -15px;">
+                    <label style="position: static; color:red" id="blood_err" class="text-danger" ></label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12 form-group">
+                    <input type="date" class="form-control mb-3" name="date" id="subject" placeholder="Date">
+                  </div>
+                  <div style="margin-top: -15px;">
+                    <label style="position: static; color:red" id="city_err" class="text-danger" ></label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12 form-group">
+                    <input type="textarea" class="form-control mb-3" name="address" id="subject" placeholder="Address">
+                  </div>
+                  <div style="margin-top: -15px;">
+                    <label style="position: static; color:red" id="city_err" class="text-danger" ></label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12 form-group">
+                    <input type="text" class="form-control mb-3" name="district" id="subject" placeholder="District">
+                  </div>
+                  <div style="margin-top: -15px;">
+                    <label style="position: static; color:red" id="city_err" class="text-danger" ></label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12 form-group">
+                    <input type="text" class="form-control mb-3" name="state" id="subject" placeholder="State">
+                  </div>
+                  <div style="margin-top: -15px;">
+                    <label style="position: static; color:red" id="city_err" class="text-danger" ></label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12 form-group">
+                    <input type="text" class="form-control mb-3" name="age" id="subject" placeholder="Age">
+                  </div>
+                  <div style="margin-top: -15px;">
+                    <label style="position: static; color:red" id="city_err" class="text-danger" ></label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <input type="submit" value="Make a Request" class="btn btn-primary rounded-0 py-2 px-4">
+                  <span class="submitting"></span>
+                  </div>
+                </div>
+              </form>
+
+
+              <div id="form-message-warning mt-4"></div> 
+              <div id="form-message-success">
+                Your message was sent, thank you!
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  {% else %}
+  <div>
+    <center><img src="/static/img/arm.gif" width="350" 
+    height="350" style="padding-top:100px ;"/></center>
+    <div class="d-flex flex-column align-items-center  justify-content-center " style="height: 500px; font-size:25px;font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;padding-bottom:400px;">
+       Please, Sign in to make a request
+       <a  class="btn btn-dark mt-2" style="height: initial;background-color: blue;font-size: 25px;" href="/sign_in">Sign in</a>
+       
+    </div>
+  </div>
+  {% endif %}
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <script>
+    window.watsonAssistantChatOptions = {
+      integrationID: "dd6e4126-85e3-4df8-a97b-18c4afe5213e", // The ID of this integration.
+      region: "eu-gb", // The region your integration is hosted in.
+      serviceInstanceID: "6dd6aee3-6aac-4af4-a77d-1f7757a5a1ed", // The ID of your service instance.
+      onLoad: function(instance) { instance.render(); }
+    };
+    setTimeout(function(){
+      const t=document.createElement('script');
+      t.src="https://web-chat.global.assistant.watson.appdomain.cloud/versions/" + (window.watsonAssistantChatOptions.clientVersion || 'latest') + "/WatsonAssistantChatEntry.js";
+      document.head.appendChild(t);
+    });
+  </script>
+  </body>
+</html>
